@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marvel Graph Lab</title>
+  <meta name="description" content="A weekly interactive network-science notebook on the Marvel Wikipedia graph.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+  <div class="wrap nav-inner">
+    <a class="brand" href="./">Marvel Graph Lab</a>
+    <div class="nav-links">
+      <a href="#posts">Posts</a>
+      <a href="#about">About</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Social Graphs · 2026</div>
+    <h1>Networks, heroes,<br>and strange little islands.</h1>
+    <p class="lede">Eight weekly experiments on the Wikipedia network of 303 Marvel superheroes. We build first, then decide what the picture is actually allowed to say.</p>
+    <div class="pill"><span data-group>YOUR GROUP NAME</span> · <span data-members>Member 1 · Member 2 · Member 3</span></div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="wrap grid">
+      <div class="card"><div class="big">303</div><div class="label">characters</div></div>
+      <div class="card"><div class="big">1,784</div><div class="label">directed Wikipedia links</div></div>
+      <div class="card"><div class="big">17</div><div class="label">isolated characters</div></div>
+    </div>
+  </section>
+
+  <section id="posts">
+    <div class="wrap">
+      <div class="eyebrow">Week 1</div>
+      <h2>First experiment</h2>
+      <a class="card post-card" href="posts/week1.html">
+        <div class="post-meta">Networks · components · directed degree</div>
+        <h3>The Marvel Archipelago</h3>
+        <p class="lede">If 91% of the superheroes are in one connected blob, who lives outside it—and what does “popular” mean when links have direction?</p>
+      </a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap article">
+      <div class="eyebrow">About</div>
+      <h2>One dataset, eight attempts.</h2>
+      <p>This is our public lab notebook for 02805 Social Graphs and Interactions. Every week we use the same Marvel Wikipedia playground to try one idea, make one thing, and write down what survived contact with the data.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Built by <span data-group>YOUR GROUP NAME</span> for <span data-course>02805 Social Graphs and Interactions</span>.</div>
+</footer>
+
+<script src="site-config.js"></script>
+<script>
+document.querySelectorAll("[data-group]").forEach(x => x.textContent = SITE.groupName);
+document.querySelectorAll("[data-members]").forEach(x => x.textContent = SITE.members.join(" · "));
+document.querySelectorAll("[data-course]").forEach(x => x.textContent = SITE.course);
+</script>
+</body>
+</html>
