@@ -1,0 +1,117 @@
+{
+  "summary": {
+    "n": 303,
+    "directed_edges": 1784,
+    "undirected_pairs": 1434,
+    "mean_directed_degree": 5.89,
+    "mean_undirected_degree": 9.47,
+    "isolates": 17,
+    "giant_component": 277,
+    "island_component": 9,
+    "outside_giant": 26,
+    "giant_share": 91.4,
+    "reciprocal_pairs": 350,
+    "reciprocated_edges": 700,
+    "reciprocated_share": 39.2,
+    "one_way_edges": 1084,
+    "one_way_share": 60.8,
+    "max_in": {
+      "node_id": "Spider-Man",
+      "name": "Spider-Man",
+      "degree": 106
+    },
+    "max_out": {
+      "node_id": "Betsy_Braddock",
+      "name": "Betsy Braddock",
+      "degree": 28
+    },
+    "spider_incoming_share_percent": 5.9,
+    "spider_node_share_percent": 35.0,
+    "spider_multiple_of_avg_in": 18.0,
+    "betsy_multiple_of_avg_out": 4.8
+  },
+  "top_in": [
+    {
+      "node_id": "Spider-Man",
+      "name": "Spider-Man",
+      "degree": 106
+    },
+    {
+      "node_id": "Hulk",
+      "name": "Hulk",
+      "degree": 64
+    },
+    {
+      "node_id": "Wolverine_(character)",
+      "name": "Wolverine (character)",
+      "degree": 60
+    },
+    {
+      "node_id": "Doctor_Strange",
+      "name": "Doctor Strange",
+      "degree": 50
+    },
+    {
+      "node_id": "Deadpool",
+      "name": "Deadpool",
+      "degree": 33
+    }
+  ],
+  "top_out": [
+    {
+      "node_id": "Betsy_Braddock",
+      "name": "Betsy Braddock",
+      "degree": 28
+    },
+    {
+      "node_id": "Cloak_and_Dagger_(characters)",
+      "name": "Cloak and Dagger (characters)",
+      "degree": 24
+    },
+    {
+      "node_id": "Adam_Warlock",
+      "name": "Adam Warlock",
+      "degree": 22
+    },
+    {
+      "node_id": "Venom_(character)",
+      "name": "Venom (character)",
+      "degree": 21
+    },
+    {
+      "node_id": "She-Hulk",
+      "name": "She-Hulk",
+      "degree": 20
+    }
+  ],
+  "island_nodes": [
+    "Backhand (character)",
+    "Blackthorn (character)",
+    "Radian (Morituri)",
+    "Scaredycat",
+    "Scatterbrain (Morituri)",
+    "Shear (character)",
+    "Snapdragon (Morituri)",
+    "Toxyn",
+    "Vyking"
+  ],
+  "isolates": [
+    "Baymax",
+    "Bird-Brain (Marvel Comics)",
+    "Black Fox (Robert Paine)",
+    "Brain Drain (character)",
+    "Breeze Barton",
+    "Captain Midlands",
+    "Charcoal (comics)",
+    "Father Time (Marvel Comics)",
+    "Happy Sam Sawyer",
+    "Hellfire (J. T. Slade)",
+    "Illuminator (Marvel Comics)",
+    "Miracleman (character)",
+    "Ogre (Marvel Comics)",
+    "Sean and Chris",
+    "Solarman",
+    "Super Rabbit",
+    "Yo-Yo Rodriguez"
+  ]
+}

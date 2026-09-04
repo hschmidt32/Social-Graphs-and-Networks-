@@ -2,70 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Marvel Graph Lab</title>
-  <meta name="description" content="A weekly interactive network-science notebook on the Marvel Wikipedia graph.">
+  <meta name="description" content="Weekly interactive network stories from the Marvel Wikipedia graph.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<nav>
+<nav class="site-nav">
   <div class="wrap nav-inner">
-    <a class="brand" href="./">Marvel Graph Lab</a>
+    <a class="brand" href="./"><span class="brand-box">GRAPH</span>VERSE</a>
     <div class="nav-links">
-      <a href="#posts">Posts</a>
-      <a href="#about">About</a>
+      <a href="#issues">Issues</a>
+      <a href="#group">Group</a>
     </div>
   </div>
 </nav>
 
-<header class="hero">
+<header class="home-hero">
   <div class="wrap">
-    <div class="eyebrow">Social Graphs · 2026</div>
-    <h1>Networks, heroes,<br>and strange little islands.</h1>
-    <p class="lede">Eight weekly experiments on the Wikipedia network of 303 Marvel superheroes. We build first, then decide what the picture is actually allowed to say.</p>
-    <div class="pill"><span data-group>YOUR GROUP NAME</span> · <span data-members>Member 1 · Member 2 · Member 3</span></div>
+    <div class="issue-kicker">02805 · Social Graphs & Interactions</div>
+    <h1 class="home-title">GRAPHVERSE</h1>
+    <p class="home-sub">Eight weeks. One Marvel dataset. One new network story every week.</p>
   </div>
 </header>
 
 <main>
-  <section>
-    <div class="wrap grid">
-      <div class="card"><div class="big">303</div><div class="label">characters</div></div>
-      <div class="card"><div class="big">1,784</div><div class="label">directed Wikipedia links</div></div>
-      <div class="card"><div class="big">17</div><div class="label">isolated characters</div></div>
+  <section class="wrap" id="issues">
+    <div class="panel">
+      <div class="panel-caption">Latest issue</div>
+      <div class="panel-pad" style="padding-top:4px">
+        <div class="story-intro">
+          <div>
+            <h2>Week 1: The Web of Marvel</h2>
+            <p class="story-copy">Who attracts the most attention in the Marvel Wikipedia universe? Why is that different from the character whose page links out the most? And who gets left completely outside the main network?</p>
+            <a href="posts/week1.html" class="comic-callout" style="text-decoration:none;margin-top:8px">Open Week 1 →</a>
+          </div>
+          <div class="big-quote">
+            Spider‑Man receives <em>106</em> incoming links — roughly one from every three character pages.
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
 
-  <section id="posts">
-    <div class="wrap">
-      <div class="eyebrow">Week 1</div>
-      <h2>First experiment</h2>
-      <a class="card post-card" href="posts/week1.html">
-        <div class="post-meta">Networks · components · directed degree</div>
-        <h3>The Marvel Archipelago</h3>
-        <p class="lede">If 91% of the superheroes are in one connected blob, who lives outside it—and what does “popular” mean when links have direction?</p>
+    <h2 style="margin-top:48px">Issues</h2>
+    <div class="issue-grid">
+      <a class="issue-card active" href="posts/week1.html">
+        <span class="issue-no">01</span>
+        <div class="content">
+          <div class="issue-kicker">Week 1</div>
+          <h3>The Web of Marvel</h3>
+          <p>Degree, direction, distributions, components.</p>
+        </div>
       </a>
+      <div class="issue-card locked"><span class="issue-no">02</span><div class="content"><div class="issue-kicker">Week 2</div><h3>Coming next</h3><p>New story, same universe.</p></div></div>
+      <div class="issue-card locked"><span class="issue-no">03</span><div class="content"><div class="issue-kicker">Week 3</div><h3>Coming next</h3><p>New story, same universe.</p></div></div>
+      <div class="issue-card locked"><span class="issue-no">04</span><div class="content"><div class="issue-kicker">Week 4</div><h3>Coming next</h3><p>New story, same universe.</p></div></div>
+      <div class="issue-card locked"><span class="issue-no">05</span><div class="content"><div class="issue-kicker">Week 5</div><h3>Coming next</h3><p>New story, same universe.</p></div></div>
+      <div class="issue-card locked"><span class="issue-no">06</span><div class="content"><div class="issue-kicker">Week 6</div><h3>Coming next</h3><p>New story, same universe.</p></div></div>
+      <div class="issue-card locked"><span class="issue-no">07</span><div class="content"><div class="issue-kicker">Week 7</div><h3>Coming next</h3><p>New story, same universe.</p></div></div>
+      <div class="issue-card locked"><span class="issue-no">08</span><div class="content"><div class="issue-kicker">Week 8</div><h3>Coming next</h3><p>New story, same universe.</p></div></div>
     </div>
   </section>
 
-  <section id="about">
-    <div class="wrap article">
-      <div class="eyebrow">About</div>
-      <h2>One dataset, eight attempts.</h2>
-      <p>This is our public lab notebook for 02805 Social Graphs and Interactions. Every week we use the same Marvel Wikipedia playground to try one idea, make one thing, and write down what survived contact with the data.</p>
+  <section class="wrap" id="group" style="margin-top:52px">
+    <div class="panel">
+      <div class="panel-caption">The team</div>
+      <div class="panel-pad" style="padding-top:5px">
+        <h2 data-group>YOUR GROUP NAME</h2>
+        <p class="story-copy" data-members>Member 1 · Member 2 · Member 3</p>
+      </div>
     </div>
   </section>
 </main>
 
-<footer>
-  <div class="wrap">Built by <span data-group>YOUR GROUP NAME</span> for <span data-course>02805 Social Graphs and Interactions</span>.</div>
+<footer class="site-footer">
+  <div class="wrap"><strong data-group>YOUR GROUP NAME</strong> · <span data-course>02805 Social Graphs and Interactions</span></div>
 </footer>
 
 <script src="site-config.js"></script>
 <script>
-document.querySelectorAll("[data-group]").forEach(x => x.textContent = SITE.groupName);
-document.querySelectorAll("[data-members]").forEach(x => x.textContent = SITE.members.join(" · "));
-document.querySelectorAll("[data-course]").forEach(x => x.textContent = SITE.course);
+document.querySelectorAll("[data-group]").forEach(el => el.textContent = SITE.groupName);
+document.querySelectorAll("[data-members]").forEach(el => el.textContent = SITE.members.join(" · "));
+document.querySelectorAll("[data-course]").forEach(el => el.textContent = SITE.course);
 </script>
 </body>
 </html>

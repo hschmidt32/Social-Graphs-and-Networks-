@@ -2,171 +2,189 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Week 1 — The Marvel Archipelago</title>
-  <meta name="description" content="A Week-1 network-science story about components and directed degree in the Marvel Wikipedia graph.">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Week 1 — The Web of Marvel</title>
+  <meta name="description" content="Week 1 network analysis of the frozen Marvel superhero Wikipedia graph.">
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-<nav>
+<nav class="site-nav">
   <div class="wrap nav-inner">
-    <a class="brand" href="../">Marvel Graph Lab</a>
-    <div class="nav-links"><a href="../">Home</a><a href="#figure">Figure</a><a href="#method">Method</a></div>
+    <a class="brand" href="../"><span class="brand-box">GRAPH</span>VERSE</a>
+    <div class="nav-links">
+      <a href="../">All weeks</a>
+      <a href="#network">Network</a>
+      <a href="#hubs">Hubs</a>
+      <a href="#distribution">Distribution</a>
+      <a href="#outside">Outside</a>
+    </div>
   </div>
 </nav>
 
-<header class="hero">
-  <div class="wrap article">
-    <div class="eyebrow">Week 1 · Networks</div>
-    <h1>The Marvel Archipelago</h1>
-    <p class="lede">We expected a single superhero hairball. Instead, the frozen Wikipedia snapshot has a giant continent, one small island, and 17 characters completely cut off from the rest.</p>
-    <div class="pill">September 2026 · <span data-group>YOUR GROUP NAME</span></div>
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <div class="issue-kicker">Issue #01 · Week 1</div>
+    <h1>The Web<br>of Marvel</h1>
+    <p class="deck">303 superheroes. 1,784 directed Wikipedia links. One question: <strong>what does “important” look like when every link has a direction?</strong></p>
+    <div class="byline">
+      <span class="pill" data-group>YOUR GROUP NAME</span>
+      <span class="pill">Frozen snapshot · 26 Aug 2026</span>
+    </div>
   </div>
 </header>
 
 <main>
-  <section>
-    <article class="wrap article">
-      <h2>What we asked</h2>
-      <p>How connected is this universe really? The network feels dense because famous characters link everywhere, but “303 nodes and 1,784 arrows” does not tell us whether everybody belongs to the same connected world. We therefore ignored direction temporarily, found the connected components, and then brought direction back to compare two different kinds of hubs.</p>
+  <div class="wrap">
+    <div id="data-error" class="error-box"></div>
 
-      <h2>What we did</h2>
-      <p>We loaded all 303 characters before adding any edges so isolated nodes could not disappear. The directed snapshot contains 1,784 links. Collapsing reciprocal arrows into undirected pairs leaves 1,434 connected pairs; we used that undirected view only for the component calculation.</p>
-
-      <div class="callout"><strong>The first surprise:</strong> 277 characters—about 91% of the network—sit in one giant component. Outside it are one 9-character component and 17 isolates. That means 26 characters sit outside the giant component even though the network looks overwhelmingly connected at first glance.</div>
-    </article>
-
-    <div class="figure" id="figure">
-      <div class="figure-head">
-        <div class="eyebrow">Interactive figure</div>
-        <h2>Two ways to describe “central”</h2>
-        <p>Switch between component membership and directed degree. The component view is a schematic: dot positions are decoration; the counts are data.</p>
-      </div>
-      <div class="controls">
-        <button id="componentsBtn" class="active">Components</button>
-        <button id="hubsBtn">Directed hubs</button>
-      </div>
-      <div id="componentViz" class="viz"></div>
-      <div id="hubViz" class="viz" hidden>
-        <div class="bars">
-          <div class="bar-row">
-            <div>Spider-Man<br><span class="note">in-degree</span></div>
-            <div class="track"><div class="fill" style="width:100%"></div></div>
-            <div class="bar-value">106</div>
+    <section class="panel">
+      <div class="panel-caption">The setup</div>
+      <div class="panel-pad" style="padding-top:4px">
+        <div class="story-intro">
+          <div class="story-copy">
+            <p>We treated every superhero page as a node and every link from one superhero page to another as a directed edge. Then we asked a simple question: <strong>does the same character dominate when we count links coming in and links going out?</strong></p>
+            <p>The answer is no. And that difference turns out to be the most revealing thing in the network.</p>
           </div>
-          <div class="bar-row">
-            <div>Betsy Braddock<br><span class="note">out-degree</span></div>
-            <div class="track"><div class="fill" style="width:26.42%"></div></div>
-            <div class="bar-value">28</div>
+          <div class="big-quote">
+            In-links are <em>attention</em>.<br><br>
+            Out-links are <em>activity</em>.
           </div>
-          <p class="note">Bar lengths share the same numeric scale. In-degree and out-degree measure different mechanisms, so this is a contrast—not a ranking of one common quantity.</p>
+        </div>
+
+        <div class="metrics">
+          <div class="metric"><div class="num" id="m-n">303</div><div class="label">characters</div><div class="sub">all nodes loaded first, including isolates</div></div>
+          <div class="metric"><div class="num" id="m-edges">1,784</div><div class="label">directed links</div><div class="sub">A → B is not the same as B → A</div></div>
+          <div class="metric"><div class="num" id="m-density">3.1%</div><div class="label">undirected density</div><div class="sub">about 97% of possible pairs are absent</div></div>
+          <div class="metric"><div class="num" id="m-isolates">17</div><div class="label">isolates</div><div class="sub">characters with no link in either direction</div></div>
         </div>
       </div>
-      <div class="legend" id="componentLegend">
-        <span>Giant component: 277</span><span>Other component: 9</span><span>Isolates: 17</span>
+    </section>
+
+    <section id="network" class="panel">
+      <div class="panel-caption">Panel 1 · The universe</div>
+      <div class="panel-pad" style="padding-top:4px">
+        <div class="figure-title">
+          <div>
+            <h2>The 91% giant component</h2>
+            <span class="comic-callout">Hover a hero</span>
+          </div>
+          <p>The biggest connected component contains 277 of 303 characters. Node size is in-degree: characters that receive more links appear larger. Positions come from a force layout, so proximity is suggestive—not a measured distance.</p>
+        </div>
+        <div id="network-viz" class="figure-frame"></div>
+        <div class="figure-note">Edges are shown undirected here only to make connected structure readable; the hub analysis below returns to the original directed graph.</div>
       </div>
-    </div>
+    </section>
 
-    <article class="wrap article">
-      <h2>What surprised us</h2>
-      <p>The network has two very different answers to “who is a hub?” Spider-Man receives 106 incoming links, while Betsy Braddock has the largest out-degree at 28. That difference makes sense once we remember who creates the links: an incoming link is many other pages deciding a character matters; an outgoing link is one page's editors deciding what that page should point to.</p>
+    <section id="hubs" class="panel">
+      <div class="panel-caption">Panel 2 · Hub showdown</div>
+      <div class="panel-pad" style="padding-top:4px">
+        <div class="figure-title">
+          <div>
+            <h2>Famous ≠ hyperlink-happy</h2>
+          </div>
+          <p>Spider‑Man wins incoming attention by a huge margin. The page with the most outgoing links is Betsy Braddock. The top of the two leaderboards is produced by two different mechanisms.</p>
+        </div>
 
-      <p>The component result was stranger. A force-directed drawing can make the giant component dominate our attention, but a component calculation exposes the exceptions immediately. The 17 isolates are especially interesting because a careless edge-list-only import would delete them from the dataset entirely.</p>
+        <div class="two-col">
+          <div class="chart-card red-head">
+            <h3>Top incoming attention</h3>
+            <div id="top-in"></div>
+          </div>
+          <div class="chart-card blue-head">
+            <h3>Top outgoing activity</h3>
+            <div id="top-out"></div>
+          </div>
+        </div>
 
-      <h2 id="method">Method & checks</h2>
-      <table>
-        <thead><tr><th>Check</th><th>Result</th></tr></thead>
-        <tbody>
-          <tr><td>Nodes</td><td>303</td></tr>
-          <tr><td>Directed edges</td><td>1,784</td></tr>
-          <tr><td>Undirected pairs</td><td>1,434</td></tr>
-          <tr><td>Giant component</td><td>277</td></tr>
-          <tr><td>Second nontrivial component</td><td>9</td></tr>
-          <tr><td>Isolates</td><td>17</td></tr>
-          <tr><td>Maximum in-degree</td><td>Spider-Man · 106</td></tr>
-          <tr><td>Maximum out-degree</td><td>Betsy Braddock · 28</td></tr>
-        </tbody>
-      </table>
+        <div style="margin-top:24px" class="two-col">
+          <div class="chart-card">
+            <h3>Spider‑Man's web</h3>
+            <p class="figure-note">Each outer dot is one character page that links to Spider‑Man. This is a real ego-network view, arranged radially to make the count readable.</p>
+            <div id="spider-web"></div>
+          </div>
+          <div class="chart-card">
+            <h3>Why the gap matters</h3>
+            <div id="hub-insight" class="story-copy"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <p class="note">Data: frozen Week-1 Marvel Wikipedia snapshot supplied by the course. We add nodes before edges so isolates survive. The component calculation uses an undirected projection; the hub comparison uses the original directed graph.</p>
+    <section id="distribution" class="panel">
+      <div class="panel-caption">Panel 3 · The tail</div>
+      <div class="panel-pad" style="padding-top:4px">
+        <div class="figure-title">
+          <div>
+            <h2>Same network, different tails</h2>
+          </div>
+          <p>The course's key Week‑1 lesson shows up clearly here: the in-degree distribution has a much longer tail than the out-degree distribution. We plot against <strong>k + 1</strong> so degree-zero nodes survive the log axis.</p>
+        </div>
+        <div class="controls">
+          <button class="degree-btn active" data-degree="both">Both</button>
+          <button class="degree-btn" data-degree="in">In-degree</button>
+          <button class="degree-btn" data-degree="out">Out-degree</button>
+          <button class="axis-btn" data-axis="linear">Linear</button>
+          <button class="axis-btn active" data-axis="log">Log–log</button>
+        </div>
+        <div id="distribution-viz" class="figure-frame"></div>
+        <div class="figure-note">Red = in-degree. Blue = out-degree. The x-axis is k + 1 specifically so the 17 zero-degree characters stay visible.</div>
+      </div>
+    </section>
 
-      <div class="code-note">G = nx.DiGraph()
-G.add_nodes_from(nodes.node_id)
-G.add_edges_from(edges.itertuples(index=False, name=None))
+    <section id="outside" class="panel">
+      <div class="panel-caption">Panel 4 · Outside the main universe</div>
+      <div class="panel-pad" style="padding-top:4px">
+        <div class="figure-title">
+          <div>
+            <h2>26 characters sit outside the giant component</h2>
+          </div>
+          <p>A network drawing is dominated by the giant component. Counting components forces us to notice the exceptions: one separate 9-character island and 17 true isolates.</p>
+        </div>
+        <div class="component-grid">
+          <div>
+            <div id="component-dots"></div>
+          </div>
+          <div class="two-col" style="grid-template-columns:1fr">
+            <div class="chart-card">
+              <h3>The 9-character island</h3>
+              <ul id="island-list" class="name-list"></ul>
+            </div>
+            <div class="chart-card">
+              <h3>The 17 isolates</h3>
+              <ul id="isolate-list" class="name-list"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-U = G.to_undirected()
-sizes = sorted((len(c) for c in nx.connected_components(U)), reverse=True)</div>
+    <section class="panel">
+      <div class="panel-caption">What surprised us</div>
+      <div class="panel-pad" style="padding-top:4px">
+        <div id="insight-list" class="insight-list"></div>
+      </div>
+    </section>
 
-      <h2>One thing we would try next</h2>
-      <p>Identify the nine characters in the small island and inspect their pages. Is the island a meaningful Marvel sub-universe, a naming artifact, or just a frozen-snapshot accident? That is a better next question than making the giant hairball prettier.</p>
-    </article>
-  </section>
+    <section class="panel">
+      <div class="panel-caption">What we did</div>
+      <div class="panel-pad method" style="padding-top:4px">
+        <p>We used the course's frozen Week‑1 node roster and directed edge list. We added every node before adding edges so the isolates could not disappear. For the component view only, we collapsed direction into undirected pairs; for all hub and degree-distribution analysis we used the original directed graph.</p>
+        <p>The page recomputes the data directly from the published Week‑1 files every time it loads and checks the course benchmarks: <code>n = 303</code>, <code>1,784</code> directed edges, <code>1,434</code> undirected pairs, <code>277</code> nodes in the giant component, and <code>17</code> isolates.</p>
+      </div>
+    </section>
+  </div>
 </main>
 
-<footer><div class="wrap">Week 1 · <span data-group>YOUR GROUP NAME</span></div></footer>
+<div id="tooltip" class="tooltip"></div>
+
+<footer class="site-footer">
+  <div class="wrap"><strong data-group>YOUR GROUP NAME</strong> · Week 1 · Social Graphs and Interactions</div>
+</footer>
 
 <script src="../site-config.js"></script>
 <script>
-document.querySelectorAll("[data-group]").forEach(x => x.textContent = SITE.groupName);
-
-const componentViz = document.getElementById("componentViz");
-const hubViz = document.getElementById("hubViz");
-const legend = document.getElementById("componentLegend");
-const componentsBtn = document.getElementById("componentsBtn");
-const hubsBtn = document.getElementById("hubsBtn");
-
-componentsBtn.onclick = () => {
-  componentViz.hidden = false; hubViz.hidden = true; legend.hidden = false;
-  componentsBtn.classList.add("active"); hubsBtn.classList.remove("active");
-};
-hubsBtn.onclick = () => {
-  componentViz.hidden = true; hubViz.hidden = false; legend.hidden = true;
-  hubsBtn.classList.add("active"); componentsBtn.classList.remove("active");
-};
-
-function seeded(i) {
-  const x = Math.sin(i * 12.9898 + 78.233) * 43758.5453;
-  return x - Math.floor(x);
-}
-
-function dot(svg, x, y, r, fill, opacity=1) {
-  const c = document.createElementNS("http://www.w3.org/2000/svg","circle");
-  c.setAttribute("cx",x); c.setAttribute("cy",y); c.setAttribute("r",r);
-  c.setAttribute("fill",fill); c.setAttribute("opacity",opacity);
-  svg.appendChild(c);
-}
-
-const svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
-svg.setAttribute("viewBox","0 0 1000 480");
-svg.setAttribute("width","100%");
-svg.setAttribute("height","100%");
-
-// Giant component: decorative cloud of exactly 277 dots.
-for (let i=0;i<277;i++) {
-  const a = seeded(i)*Math.PI*2, rr = Math.sqrt(seeded(i+500))*175;
-  dot(svg, 330+Math.cos(a)*rr*1.22, 240+Math.sin(a)*rr, 4.3, "#7fd4ff", .82);
-}
-// 9-node island.
-for (let i=0;i<9;i++) {
-  const a = 2*Math.PI*i/9;
-  dot(svg, 700+Math.cos(a)*48, 195+Math.sin(a)*48, 5.8, "#f3bf3d", .95);
-}
-// 17 isolates.
-for (let i=0;i<17;i++) {
-  const col=i%6, row=Math.floor(i/6);
-  dot(svg, 645+col*55, 335+row*45, 5.8, "#9b8cff", .95);
-}
-
-const label = (x,y,text) => {
-  const t=document.createElementNS("http://www.w3.org/2000/svg","text");
-  t.setAttribute("x",x); t.setAttribute("y",y); t.setAttribute("fill","#f4f6fb");
-  t.setAttribute("font-size","17"); t.setAttribute("font-family","system-ui, sans-serif");
-  t.textContent=text; svg.appendChild(t);
-};
-label(245,28,"277-node giant component");
-label(640,115,"9-node island");
-label(640,455,"17 isolates");
-componentViz.appendChild(svg);
+document.querySelectorAll("[data-group]").forEach(el => el.textContent = SITE.groupName);
 </script>
+<script type="module" src="../js/week1.js"></script>
 </body>
 </html>
