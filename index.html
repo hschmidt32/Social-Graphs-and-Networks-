@@ -11,13 +11,9 @@
 <nav class="site-nav">
   <div class="wrap nav-inner">
     <a class="brand" href="./"><span class="brand-box">GRAPH</span>VERSE</a>
-    <div class="nav-links">
-      <a href="#issues">Issues</a>
-      <a href="#group">Group</a>
-    </div>
+    <div class="nav-links"><a href="#issues">Issues</a><a href="#group">Group</a></div>
   </div>
 </nav>
-
 <header class="home-hero">
   <div class="wrap">
     <div class="issue-kicker">02805 · Social Graphs & Interactions</div>
@@ -25,7 +21,6 @@
     <p class="home-sub">Eight weeks. One Marvel dataset. One new network story every week.</p>
   </div>
 </header>
-
 <main>
   <section class="wrap" id="issues">
     <div class="panel">
@@ -33,28 +28,18 @@
       <div class="panel-pad" style="padding-top:4px">
         <div class="story-intro">
           <div>
-            <h2>Week 1: The Web of Marvel</h2>
-            <p class="story-copy">Who attracts the most attention in the Marvel Wikipedia universe? Why is that different from the character whose page links out the most? And who gets left completely outside the main network?</p>
-            <a href="posts/week1.html" class="comic-callout" style="text-decoration:none;margin-top:8px">Open Week 1 →</a>
+            <h2>Week 2: The Multiverse Test</h2>
+            <p class="story-copy">Keep every hero exactly as connected, scramble every relationship, and rebuild Marvel 100 times. Which patterns are just consequences of the hubs — and which refuse to disappear?</p>
+            <a href="posts/week2.html" class="comic-callout" style="text-decoration:none;margin-top:8px">Open Week 2 →</a>
           </div>
-          <div class="big-quote">
-            Spider‑Man receives <em>106</em> incoming links — roughly one from every three character pages.
-          </div>
+          <div class="big-quote">Same degrees.<br>New universe.<br><em>What survives?</em></div>
         </div>
       </div>
     </div>
-
     <h2 style="margin-top:48px">Issues</h2>
     <div class="issue-grid">
-      <a class="issue-card active" href="posts/week1.html">
-        <span class="issue-no">01</span>
-        <div class="content">
-          <div class="issue-kicker">Week 1</div>
-          <h3>The Web of Marvel</h3>
-          <p>Degree, direction, distributions, components.</p>
-        </div>
-      </a>
-      <div class="issue-card locked"><span class="issue-no">02</span><div class="content"><div class="issue-kicker">Week 2</div><h3>Coming next</h3><p>New story, same universe.</p></div></div>
+      <a class="issue-card active" href="posts/week1.html"><span class="issue-no">01</span><div class="content"><div class="issue-kicker">Week 1</div><h3>The Web of Marvel</h3><p>Degree, direction, distributions, components.</p></div></a>
+      <a class="issue-card active" href="posts/week2.html"><span class="issue-no">02</span><div class="content"><div class="issue-kicker">Week 2</div><h3>The Multiverse Test</h3><p>Null models, clustering, and 100 rewired universes.</p></div></a>
       <div class="issue-card locked"><span class="issue-no">03</span><div class="content"><div class="issue-kicker">Week 3</div><h3>Coming next</h3><p>New story, same universe.</p></div></div>
       <div class="issue-card locked"><span class="issue-no">04</span><div class="content"><div class="issue-kicker">Week 4</div><h3>Coming next</h3><p>New story, same universe.</p></div></div>
       <div class="issue-card locked"><span class="issue-no">05</span><div class="content"><div class="issue-kicker">Week 5</div><h3>Coming next</h3><p>New story, same universe.</p></div></div>
@@ -63,22 +48,11 @@
       <div class="issue-card locked"><span class="issue-no">08</span><div class="content"><div class="issue-kicker">Week 8</div><h3>Coming next</h3><p>New story, same universe.</p></div></div>
     </div>
   </section>
-
   <section class="wrap" id="group" style="margin-top:52px">
-    <div class="panel">
-      <div class="panel-caption">The team</div>
-      <div class="panel-pad" style="padding-top:5px">
-        <h2 data-group>YOUR GROUP NAME</h2>
-        <p class="story-copy" data-members>Member 1 · Member 2 · Member 3</p>
-      </div>
-    </div>
+    <div class="panel"><div class="panel-caption">The team</div><div class="panel-pad" style="padding-top:5px"><h2 data-group>YOUR GROUP NAME</h2><p class="story-copy" data-members>Member 1 · Member 2 · Member 3</p></div></div>
   </section>
 </main>
-
-<footer class="site-footer">
-  <div class="wrap"><strong data-group>YOUR GROUP NAME</strong> · <span data-course>02805 Social Graphs and Interactions</span></div>
-</footer>
-
+<footer class="site-footer"><div class="wrap"><strong data-group>YOUR GROUP NAME</strong> · <span data-course>02805 Social Graphs and Interactions</span></div></footer>
 <script src="site-config.js"></script>
 <script>
 document.querySelectorAll("[data-group]").forEach(el => el.textContent = SITE.groupName);
