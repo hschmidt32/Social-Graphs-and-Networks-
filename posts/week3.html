@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Week 3 — Who Holds Marvel Together?</title>
+  <meta name="description" content="An interactive exploration of centrality, network robustness, shortest paths, and cliques in the Marvel Wikipedia graph.">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../week3.css">
+</head>
+<body>
+<nav class="site-nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="../"><span class="brand-box">GRAPH</span>VERSE</a>
+    <div class="nav-links">
+      <a href="../">All weeks</a>
+      <a href="#centrality">Centrality</a>
+      <a href="#collapse">Collapse</a>
+      <a href="#paths">Paths</a>
+      <a href="#cliques">Cliques</a>
+    </div>
+  </div>
+</nav>
+
+<header class="masthead week3-masthead">
+  <div class="wrap masthead-inner">
+    <div class="issue-kicker">Issue #03 · Week 3</div>
+    <h1>Who Holds<br>Marvel Together?</h1>
+    <p class="deck">Pick what “important” means. Remove heroes. Trace shortest paths. Hunt inner circles. <strong>This week, you control the network.</strong></p>
+    <div class="byline">
+      <span class="pill" data-group>YOUR GROUP NAME</span>
+      <span class="pill">Paths · centrality · robustness · cliques</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+  <div id="data-error" class="error-box"></div>
+
+  <section class="panel intro-panel">
+    <div class="panel-caption">The control room</div>
+    <div class="panel-pad" style="padding-top:4px">
+      <div class="story-intro">
+        <div class="story-copy">
+          <p>There is no single definition of the “most important” Marvel character. A hero can be popular, central to shortest paths, close to everyone else, or embedded in dense inner circles.</p>
+          <p><strong>So instead of giving you one ranking, this page lets you change the question and watch the network answer.</strong></p>
+        </div>
+        <div class="big-quote">One network.<br>Four experiments.<br><em>You choose.</em></div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="num" id="m-nodes">—</div><div class="label">heroes loaded</div><div class="sub">same frozen course snapshot</div></div>
+        <div class="metric"><div class="num" id="m-edges">—</div><div class="label">undirected links</div><div class="sub">duplicate directions collapsed</div></div>
+        <div class="metric"><div class="num" id="m-gc">—</div><div class="label">giant component</div><div class="sub">used for paths + centrality</div></div>
+        <div class="metric"><div class="num" id="m-diameter">—</div><div class="label">network diameter</div><div class="sub">longest shortest path in the giant component</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="centrality" class="panel">
+    <div class="panel-caption">Panel 1 · Centrality lab</div>
+    <div class="panel-pad" style="padding-top:4px">
+      <div class="figure-title">
+        <div><h2>Change the definition of “important”</h2><span class="comic-callout">Every dot is a character</span></div>
+        <p>Choose any two centrality measures. Characters animate to their new positions. Large gaps from the diagonal intuition reveal heroes whose structural role is very different from their raw popularity.</p>
+      </div>
+      <div class="lab-controls">
+        <label>X axis<select id="x-metric"></select></label>
+        <button id="swap-axes" type="button" aria-label="Swap axes">⇄ Swap</button>
+        <label>Y axis<select id="y-metric"></select></label>
+        <label>Search hero<input id="hero-search" type="search" placeholder="Spider-Man…" list="hero-list"></label>
+        <datalist id="hero-list"></datalist>
+      </div>
+      <div class="two-col centrality-grid">
+        <div class="figure-frame interactive-frame"><svg id="centrality-scatter" viewBox="0 0 760 500" role="img" aria-label="Interactive centrality scatterplot"></svg></div>
+        <div class="chart-card character-inspector">
+          <h3 id="selected-name">Pick a character</h3>
+          <div id="selected-summary" class="selected-summary">Click any point in the plot or search by name.</div>
+          <div id="rank-grid" class="rank-grid"></div>
+          <button id="spotlight-btn" type="button" disabled>Spotlight in network</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="collapse" class="panel">
+    <div class="panel-caption">Panel 2 · Break the universe</div>
+    <div class="panel-pad" style="padding-top:4px">
+      <div class="figure-title">
+        <div><h2>Which removals make Marvel fall apart fastest?</h2><span class="comic-callout">Attack the network</span></div>
+        <p>Choose a removal strategy and scrub through the first 30 removals. The network physically rearranges while the line chart tracks the surviving giant component.</p>
+      </div>
+      <div class="collapse-controls">
+        <label>Removal strategy<select id="remove-strategy"></select></label>
+        <div class="range-wrap"><div><strong>Characters removed</strong><span id="removed-count">0</span></div><input id="remove-slider" type="range" min="0" max="30" step="1" value="0"></div>
+        <button id="play-collapse" type="button">▶ Run collapse</button>
+        <button id="reset-collapse" type="button">↻ Reset</button>
+      </div>
+      <div class="collapse-grid">
+        <div class="figure-frame network-frame"><svg id="network-viz" viewBox="0 0 760 560" role="img" aria-label="Force-directed Marvel network"></svg></div>
+        <div>
+          <div class="figure-frame"><svg id="collapse-chart" viewBox="0 0 620 360" role="img" aria-label="Giant component under character removals"></svg></div>
+          <div class="collapse-readout">
+            <div><span>Current giant component</span><strong id="gc-now">—</strong></div>
+            <div><span>Last removed</span><strong id="last-removed">Nobody</strong></div>
+            <div><span>Remaining links</span><strong id="links-now">—</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="paths" class="panel">
+    <div class="panel-caption">Panel 3 · Six degrees of Marvel</div>
+    <div class="panel-pad" style="padding-top:4px">
+      <div class="figure-title">
+        <div><h2>Trace the shortest chain between any two heroes</h2><span class="comic-callout">Shortest-path machine</span></div>
+        <p>Pick two characters and the graph finds the shortest route between them. Try a random pair, route anyone to Spider-Man, or jump straight to one of the network’s longest shortest paths.</p>
+      </div>
+      <div class="path-controls">
+        <label>From<select id="path-from"></select></label>
+        <div class="path-arrow">→</div>
+        <label>To<select id="path-to"></select></label>
+        <button id="find-path" type="button">Find path</button>
+        <button id="random-pair" type="button">Random pair</button>
+        <button id="to-spiderman" type="button">To Spider-Man</button>
+        <button id="diameter-pair" type="button">Longest route</button>
+      </div>
+      <div id="path-result" class="path-result"><div class="loading-state">Choose two characters.</div></div>
+    </div>
+  </section>
+
+  <section id="cliques" class="panel">
+    <div class="panel-caption">Panel 4 · Clique hunter</div>
+    <div class="panel-pad" style="padding-top:4px">
+      <div class="figure-title">
+        <div><h2>Find Marvel’s tightest inner circles</h2><span class="comic-callout">Everyone knows everyone</span></div>
+        <p>A clique is a group where every pair is directly connected. Raise the minimum size to filter out ordinary triangles and expose only the densest groups.</p>
+      </div>
+      <div class="clique-controls">
+        <div class="range-wrap"><div><strong>Minimum clique size</strong><span id="clique-size-label">4</span></div><input id="clique-size" type="range" min="3" max="8" step="1" value="4"></div>
+        <button id="prev-clique" type="button">← Previous</button>
+        <button id="next-clique" type="button">Next →</button>
+      </div>
+      <div class="two-col clique-grid">
+        <div class="figure-frame clique-stage"><svg id="clique-viz" viewBox="0 0 650 480" role="img" aria-label="Selected clique"></svg></div>
+        <div class="chart-card">
+          <h3 id="clique-title">Clique hunter</h3>
+          <div id="clique-copy" class="selected-summary">Computing maximal cliques…</div>
+          <div id="clique-members" class="clique-members"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-caption">What to notice</div>
+    <div class="panel-pad" style="padding-top:4px">
+      <div class="survivor-grid week3-lessons">
+        <div class="survivor"><div class="stamp">COMPARE</div><h3>Popularity vs brokerage</h3><p>High degree and high betweenness often overlap, but not perfectly. The outliers are the interesting brokers.</p></div>
+        <div class="survivor"><div class="stamp">ATTACK</div><h3>Centrality is a hypothesis</h3><p>If a metric claims to identify structurally important characters, targeted removals let us test that claim directly.</p></div>
+        <div class="survivor"><div class="stamp">TRACE</div><h3>Small worlds are navigable</h3><p>Shortest paths turn a global graph into a concrete chain of characters you can inspect one link at a time.</p></div>
+      </div>
+      <div class="final-verdict"><div class="verdict-word">YOUR TURN</div><p>There is no single “most important” Marvel character. Change the metric, change the intervention, and the answer changes with it.</p></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-caption">What we did</div>
+    <div class="panel-pad method" style="padding-top:4px">
+      <p>We load the same frozen course snapshot used in Weeks 1 and 2, collapse directed links to undirected pairs, and analyze the giant component. Degree, closeness, eigenvector centrality, and Brandes betweenness are computed in the browser. Shortest paths use breadth-first search.</p>
+      <p>The collapse experiment removes characters according to a fixed ranking by degree, betweenness, closeness, or a reproducible random order, recalculating the surviving giant component after each removal. Maximal cliques are found with a Bron–Kerbosch search and filtered interactively by size.</p>
+    </div>
+  </section>
+</div>
+</main>
+
+<footer class="site-footer"><div class="wrap"><strong data-group>YOUR GROUP NAME</strong> · <span data-course>02805 Social Graphs and Interactions</span></div></footer>
+<script src="../site-config.js"></script>
+<script>
+document.querySelectorAll("[data-group]").forEach(el => el.textContent = SITE.groupName);
+document.querySelectorAll("[data-course]").forEach(el => el.textContent = SITE.course);
+</script>
+<script type="module" src="../js/week3.js"></script>
+</body>
+</html>

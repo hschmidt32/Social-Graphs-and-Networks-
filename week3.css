@@ -1,0 +1,49 @@
+.week3-masthead{
+  background:
+    radial-gradient(circle at 18% 22%,rgba(255,255,255,.12) 0 3px,transparent 4px) 0 0/24px 24px,
+    linear-gradient(130deg,#8d1024 0%,#e4232f 43%,#ff9d1d 100%);
+}
+.week3-masthead::after{border-color:rgba(255,212,59,.25);box-shadow:0 0 0 40px rgba(255,255,255,.045),0 0 0 80px rgba(255,255,255,.025)}
+.week3-masthead .deck strong{color:var(--yellow)}
+.intro-panel .big-quote em{color:var(--red)}
+
+.lab-controls,.collapse-controls,.path-controls,.clique-controls{display:flex;align-items:end;gap:12px;flex-wrap:wrap;margin:18px 0}
+.lab-controls label,.collapse-controls label,.path-controls label{display:grid;gap:6px;font-size:.75rem;font-weight:900;text-transform:uppercase;letter-spacing:.07em;min-width:180px}
+.lab-controls select,.lab-controls input,.collapse-controls select,.path-controls select{min-height:44px;border:3px solid var(--ink);background:white;padding:8px 10px;font:inherit;font-weight:800}
+button{min-height:44px}
+#swap-axes{background:var(--yellow);color:var(--ink)}
+
+.centrality-grid{grid-template-columns:minmax(0,1.7fr) minmax(270px,.8fr);align-items:stretch}
+.interactive-frame,.network-frame,.clique-stage{position:relative;background:#fffdf6;overflow:hidden}
+.interactive-frame svg,.network-frame svg,.clique-stage svg{width:100%;height:auto;display:block;touch-action:none}
+.axis text{font-weight:900;fill:var(--ink)}.axis path,.axis line{stroke:var(--ink);stroke-width:2}
+.grid line{stroke:#ddd;stroke-dasharray:4 5}.grid path{display:none}
+.scatter-dot{cursor:pointer;stroke:var(--ink);stroke-width:1.4;opacity:.78;transition:opacity .15s}.scatter-dot:hover,.scatter-dot.selected{opacity:1;stroke-width:4}
+.scatter-label{font-family:Impact,"Arial Black",sans-serif;font-size:14px;paint-order:stroke;stroke:white;stroke-width:4px;stroke-linejoin:round}
+.axis-title{font-family:Impact,"Arial Black",sans-serif;font-size:18px;letter-spacing:.03em}
+.character-inspector{display:flex;flex-direction:column;min-height:100%}
+.selected-summary{line-height:1.55}.rank-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:16px 0 18px}
+.rank-grid>div{border:2px solid var(--ink);padding:9px;background:white}.rank-grid span{display:block;font-size:.68rem;text-transform:uppercase;font-weight:900;color:var(--muted)}.rank-grid strong{font-family:Impact,"Arial Black",sans-serif;font-size:1.3rem}
+.character-inspector button{margin-top:auto}
+
+.collapse-controls{display:grid;grid-template-columns:minmax(180px,.8fr) minmax(260px,1.5fr) auto auto;align-items:end}
+.range-wrap{border:3px solid var(--ink);background:white;padding:8px 12px}.range-wrap>div{display:flex;justify-content:space-between;gap:18px;text-transform:uppercase;font-size:.75rem;letter-spacing:.06em}.range-wrap span{font-family:Impact,"Arial Black",sans-serif;font-size:1.15rem}.range-wrap input{width:100%;accent-color:var(--red)}
+.collapse-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,.95fr);gap:18px;align-items:start}
+.network-link{stroke:#c8c8c8;stroke-opacity:.48}.network-node{stroke:var(--ink);stroke-width:1.2;cursor:pointer}.network-node.selected{stroke-width:4}.network-label{font-family:Impact,"Arial Black",sans-serif;font-size:12px;paint-order:stroke;stroke:white;stroke-width:3px}
+.collapse-readout{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:10px}.collapse-readout>div{border:3px solid var(--ink);padding:10px;background:white}.collapse-readout span{display:block;font-size:.65rem;text-transform:uppercase;font-weight:900;color:var(--muted)}.collapse-readout strong{display:block;font-family:Impact,"Arial Black",sans-serif;font-size:1.35rem;margin-top:3px;word-break:break-word}
+.collapse-line{fill:none;stroke-width:5}.collapse-point{stroke:var(--ink);stroke-width:1.5}.current-marker{stroke:var(--red);stroke-width:3;stroke-dasharray:6 5}
+
+.path-controls{display:grid;grid-template-columns:1fr 42px 1fr repeat(4,auto);align-items:end}.path-arrow{font-family:Impact,"Arial Black",sans-serif;font-size:2rem;text-align:center;padding-bottom:5px}.path-result{border:3px solid var(--ink);background:#fffdf6;min-height:180px;padding:18px;display:grid;align-items:center}.path-chain{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.path-card{border:3px solid var(--ink);background:white;box-shadow:4px 4px 0 var(--ink);padding:14px 16px;font-family:Impact,"Arial Black",sans-serif;font-size:1.2rem;max-width:220px}.path-card.selected{background:var(--yellow)}.path-step{font-family:Impact,"Arial Black",sans-serif;font-size:2rem;color:var(--red)}.path-meta{margin-top:18px;font-weight:900}
+
+.clique-controls{display:grid;grid-template-columns:minmax(250px,1fr) auto auto}.clique-grid{grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);align-items:stretch}.clique-members{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.clique-member{border:2px solid var(--ink);padding:7px 9px;background:var(--yellow);font-weight:900}.clique-edge{stroke:var(--ink);stroke-width:3;opacity:.65}.clique-node{fill:white;stroke:var(--ink);stroke-width:4}.clique-node-text{text-anchor:middle;font-family:Impact,"Arial Black",sans-serif;font-size:15px;paint-order:stroke;stroke:white;stroke-width:5px}
+
+.week3-lessons .survivor{background:white}.week3-lessons .stamp{background:var(--purple);color:white}
+.loading-state{font-family:Impact,"Arial Black",sans-serif;font-size:1.6rem;color:#aaa;text-transform:uppercase;text-align:center}
+.viz-tooltip{position:fixed;z-index:20;pointer-events:none;background:var(--ink);color:white;border:2px solid white;padding:7px 9px;font-weight:900;font-size:.8rem;box-shadow:3px 3px 0 rgba(0,0,0,.25);display:none;max-width:230px}
+
+@media(max-width:1050px){
+  .collapse-controls{grid-template-columns:1fr 1fr}.collapse-grid,.centrality-grid,.clique-grid{grid-template-columns:1fr}.path-controls{grid-template-columns:1fr 42px 1fr}.path-controls button{grid-column:auto}.character-inspector{min-height:320px}
+}
+@media(max-width:700px){
+  .lab-controls,.collapse-controls,.path-controls,.clique-controls{display:grid;grid-template-columns:1fr}.lab-controls label,.collapse-controls label,.path-controls label{min-width:0}.path-arrow{transform:rotate(90deg)}.collapse-readout{grid-template-columns:1fr}.rank-grid{grid-template-columns:1fr 1fr}.nav-links a:nth-child(n+3){display:none}
+}

@@ -1,0 +1,14 @@
+Replace the “Latest issue” block in index.html with:
+
+<div class="story-intro">
+  <div>
+    <h2>Week 3: Who Holds Marvel Together?</h2>
+    <p class="story-copy">Change the definition of importance, attack the network, trace shortest paths, and hunt Marvel’s tightest inner circles.</p>
+    <a href="posts/week3.html" class="comic-callout" style="text-decoration:none;margin-top:8px">Open Week 3 →</a>
+  </div>
+  <div class="big-quote">One network.<br>Four experiments.<br><em>You choose.</em></div>
+</div>
+
+And replace the locked Week 3 issue-card with:
+
+<a class="issue-card active" href="posts/week3.html"><span class="issue-no">03</span><div class="content"><div class="issue-kicker">Week 3</div><h3>Who Holds Marvel Together?</h3><p>Centrality, targeted attacks, shortest paths, and cliques.</p></div></a>
