@@ -1,0 +1,30 @@
+.week4-masthead{
+  background:
+    radial-gradient(circle at 82% 18%,rgba(255,255,255,.14) 0 3px,transparent 4px) 0 0/26px 26px,
+    linear-gradient(132deg,#281052 0%,#6f39a7 45%,#e4232f 100%);
+}
+.week4-masthead::after{border-color:rgba(255,212,59,.28);box-shadow:0 0 0 40px rgba(255,255,255,.04),0 0 0 80px rgba(255,255,255,.02)}
+.week4-masthead .deck em{color:var(--yellow);font-style:normal;font-weight:900}
+.week4-masthead .pill{background:#fff;color:var(--ink)}
+.intro-panel .big-quote em{color:var(--purple)}
+.panel-pad{padding-top:4px}
+.figure-title{display:flex;justify-content:space-between;gap:24px;align-items:start}.figure-title>p{max-width:570px;line-height:1.55}
+.control-strip,.border-controls{display:flex;align-items:end;gap:12px;flex-wrap:wrap;margin:18px 0}
+.range-wrap{border:3px solid var(--ink);background:white;padding:8px 12px;min-width:310px;flex:1}.range-wrap>div{display:flex;justify-content:space-between;gap:18px;text-transform:uppercase;font-size:.75rem;letter-spacing:.06em}.range-wrap span{font-family:Impact,"Arial Black",sans-serif;font-size:1.15rem}.range-wrap input{width:100%;accent-color:var(--purple)}
+.live-stat{border:3px solid var(--ink);background:white;min-width:130px;padding:7px 11px}.live-stat span{display:block;font-size:.65rem;text-transform:uppercase;font-weight:900;color:var(--muted)}.live-stat strong{font-family:Impact,"Arial Black",sans-serif;font-size:1.5rem}
+.resolution-grid,.border-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(290px,.75fr);gap:18px;align-items:stretch}
+.community-stage,.backbone-stage{background:#0f1020;overflow:hidden;position:relative}.community-stage svg,.backbone-stage svg,.figure-frame svg{width:100%;height:auto;display:block}
+.community-link{stroke:#fff;stroke-opacity:.13}.community-node{stroke:#fff;stroke-width:3;cursor:pointer}.community-node:hover,.community-node.selected{stroke:var(--yellow);stroke-width:7}
+.community-label{font-family:Impact,"Arial Black",sans-serif;fill:white;text-anchor:middle;pointer-events:none;paint-order:stroke;stroke:#111;stroke-width:5px;stroke-linejoin:round}
+.inspector{min-height:100%;display:flex;flex-direction:column}.eyebrow{text-transform:uppercase;font-size:.7rem;letter-spacing:.12em;font-weight:900;color:var(--purple)}
+.member-cloud{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}.member-chip{border:2px solid var(--ink);background:var(--yellow);padding:5px 7px;font-weight:900;font-size:.78rem}
+.border-controls label{display:grid;gap:6px;font-size:.75rem;font-weight:900;text-transform:uppercase;letter-spacing:.07em;min-width:260px}.border-controls input{min-height:44px;border:3px solid var(--ink);background:white;padding:8px 10px;font:inherit;font-weight:800}
+.loyalty-bar{cursor:pointer}.loyalty-bar:hover{opacity:.72}.loyalty-label{font-size:12px;font-weight:900;fill:var(--ink)}.axis text{font-weight:900;fill:var(--ink)}.axis path,.axis line{stroke:var(--ink);stroke-width:2}.grid line{stroke:#ddd;stroke-dasharray:4 5}.grid path{display:none}
+.passport-score{font-family:Impact,"Arial Black",sans-serif;font-size:4rem;line-height:1;color:var(--purple);margin:10px 0}.passport-row{border-top:2px solid var(--ink);padding:9px 0;display:flex;justify-content:space-between;gap:10px}.passport-row span{font-weight:900}.passport-row small{color:var(--muted);text-align:right}
+.backbone-controls .range-wrap{max-width:480px}.backbone-link{stroke:#d9d9e8;stroke-opacity:.25}.backbone-node{stroke:#fff;stroke-width:1.4;cursor:pointer}.backbone-node:hover{stroke:var(--yellow);stroke-width:4}.backbone-label{font-family:Impact,"Arial Black",sans-serif;fill:white;font-size:12px;paint-order:stroke;stroke:#0f1020;stroke-width:4px}
+.figure-note{font-size:.82rem;color:var(--muted);font-weight:800;margin-top:9px}
+.week4-lessons .survivor{background:white}.week4-lessons .stamp{background:var(--purple);color:white}
+.viz-tooltip{position:fixed;z-index:20;pointer-events:none;background:var(--ink);color:white;border:2px solid white;padding:7px 9px;font-weight:900;font-size:.8rem;box-shadow:3px 3px 0 rgba(0,0,0,.25);display:none;max-width:260px}
+.loading-state{font-family:Impact,"Arial Black",sans-serif;font-size:1.5rem;fill:#aaa;text-transform:uppercase}
+@media(max-width:950px){.resolution-grid,.border-grid{grid-template-columns:1fr}.figure-title{display:block}}
+@media(max-width:700px){.control-strip,.border-controls{display:grid;grid-template-columns:1fr}.range-wrap{min-width:0}.border-controls label{min-width:0}.nav-links a:nth-child(n+3){display:none}}

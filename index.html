@@ -1,48 +1,34 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Marvel Graph Lab</title>
-<meta name="description" content="Weekly interactive network stories from the Marvel Wikipedia graph.">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Graphverse</title><meta name="description" content="Weekly interactive network stories for 02805 Social Graphs and Interactions.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<nav class="site-nav">
-<div class="wrap nav-inner">
-<a class="brand" href="./"><span class="brand-box">GRAPH</span>VERSE</a>
-<div class="nav-links"><a href="#issues">Issues</a><a href="#group">Group</a></div>
-</div>
-</nav>
-<header class="home-hero"><div class="wrap"><div class="issue-kicker">02805 · Social Graphs & Interactions</div><h1 class="home-title">GRAPHVERSE</h1><p class="home-sub">Eight weeks. One Marvel dataset. One new network story every week.</p></div></header>
+<nav class="site-nav"><div class="wrap nav-inner"><a class="brand" href="./"><span class="brand-box">GRAPH</span>VERSE</a><div class="nav-links"><a href="#issues">Issues</a><a href="#group">Group</a></div></div></nav>
+<header class="home-hero"><div class="wrap"><div class="issue-kicker">02805 · Social Graphs & Interactions</div><h1 class="home-title">GRAPHVERSE</h1><p class="home-sub">Eight weeks. One new network story every week.</p></div></header>
 <main>
 <section class="wrap" id="issues">
 <div class="panel"><div class="panel-caption">Latest issue</div><div class="panel-pad" style="padding-top:4px">
-<div class="story-intro">
-<div><h2>Week 3: Who Holds Marvel Together?</h2><p class="story-copy">Change the definition of importance, attack the network, trace shortest paths, and hunt Marvel’s tightest inner circles.</p><a href="posts/week3.html" class="comic-callout" style="text-decoration:none;margin-top:8px">Open Week 3 →</a></div>
-<div class="big-quote">One network.<br>Four experiments.<br><em>You choose.</em></div>
-</div>
+<div class="story-intro"><div><h2>Week 4: Who Belongs Where?</h2><p class="story-copy">Turn the community-resolution dial, find philosophers who cross unstable borders, and X-ray the weighted network down to its backbone.</p><a href="posts/week4.html" class="comic-callout" style="text-decoration:none;margin-top:8px">Open Week 4 →</a></div><div class="big-quote">Same network.<br>Different lens.<br><em>Different borders.</em></div></div>
 </div></div>
 <h2 style="margin-top:48px">Issues</h2>
 <div class="issue-grid">
 <a class="issue-card active" href="posts/week1.html"><span class="issue-no">01</span><div class="content"><div class="issue-kicker">Week 1</div><h3>The Web of Marvel</h3><p>Degree, direction, distributions, components.</p></div></a>
 <a class="issue-card active" href="posts/week2.html"><span class="issue-no">02</span><div class="content"><div class="issue-kicker">Week 2</div><h3>The Multiverse Test</h3><p>Null models, clustering, and 100 rewired universes.</p></div></a>
 <a class="issue-card active" href="posts/week3.html"><span class="issue-no">03</span><div class="content"><div class="issue-kicker">Week 3</div><h3>Who Holds Marvel Together?</h3><p>Centrality, targeted attacks, shortest paths, and cliques.</p></div></a>
-<div class="issue-card locked"><span class="issue-no">04</span><div class="content"><div class="issue-kicker">Week 4</div><h3>Coming next</h3><p>New story, same universe.</p></div></div>
-<div class="issue-card locked"><span class="issue-no">05</span><div class="content"><div class="issue-kicker">Week 5</div><h3>Coming next</h3><p>New story, same universe.</p></div></div>
-<div class="issue-card locked"><span class="issue-no">06</span><div class="content"><div class="issue-kicker">Week 6</div><h3>Coming next</h3><p>New story, same universe.</p></div></div>
-<div class="issue-card locked"><span class="issue-no">07</span><div class="content"><div class="issue-kicker">Week 7</div><h3>Coming next</h3><p>New story, same universe.</p></div></div>
-<div class="issue-card locked"><span class="issue-no">08</span><div class="content"><div class="issue-kicker">Week 8</div><h3>Coming next</h3><p>New story, same universe.</p></div></div>
-</div>
-</section>
+<a class="issue-card active" href="posts/week4.html"><span class="issue-no">04</span><div class="content"><div class="issue-kicker">Week 4</div><h3>Who Belongs Where?</h3><p>Communities, stability, weighted ties, and backbones.</p></div></a>
+<div class="issue-card locked"><span class="issue-no">05</span><div class="content"><div class="issue-kicker">Week 5</div><h3>Coming next</h3><p>New story, new tools.</p></div></div>
+<div class="issue-card locked"><span class="issue-no">06</span><div class="content"><div class="issue-kicker">Week 6</div><h3>Coming next</h3><p>New story, new tools.</p></div></div>
+<div class="issue-card locked"><span class="issue-no">07</span><div class="content"><div class="issue-kicker">Week 7</div><h3>Coming next</h3><p>New story, new tools.</p></div></div>
+<div class="issue-card locked"><span class="issue-no">08</span><div class="content"><div class="issue-kicker">Week 8</div><h3>Coming next</h3><p>New story, new tools.</p></div></div>
+</div></section>
 <section class="wrap" id="group" style="margin-top:52px"><div class="panel"><div class="panel-caption">The team</div><div class="panel-pad" style="padding-top:5px"><h2 data-group>YOUR GROUP NAME</h2><p class="story-copy" data-members>Member 1 · Member 2 · Member 3</p></div></div></section>
 </main>
 <footer class="site-footer"><div class="wrap"><strong data-group>YOUR GROUP NAME</strong> · <span data-course>02805 Social Graphs and Interactions</span></div></footer>
-<script src="site-config.js"></script>
-<script>
+<script src="site-config.js"></script><script>
 document.querySelectorAll("[data-group]").forEach(el => el.textContent = SITE.groupName);
 document.querySelectorAll("[data-members]").forEach(el => el.textContent = SITE.members.join(" · "));
 document.querySelectorAll("[data-course]").forEach(el => el.textContent = SITE.course);
-</script>
-</body>
-</html>
+</script></body></html>

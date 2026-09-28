@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Week 4 — Who Belongs Where?</title>
+  <meta name="description" content="An interactive exploration of communities, Louvain resolution, instability, weighted ties, and network backbones in the philosophers network.">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../week4.css">
+</head>
+<body>
+<nav class="site-nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="../"><span class="brand-box">GRAPH</span>VERSE</a>
+    <div class="nav-links">
+      <a href="../">All weeks</a><a href="#resolution">Resolution</a><a href="#borders">Border crossers</a><a href="#backbone">Backbone</a>
+    </div>
+  </div>
+</nav>
+
+<header class="masthead week4-masthead">
+  <div class="wrap masthead-inner">
+    <div class="issue-kicker">Issue #04 · Week 4</div>
+    <h1>Who Belongs<br>Where?</h1>
+    <p class="deck">A network can have communities without having <em>one true map</em> of them. Turn the dials and watch the borders move.</p>
+    <div class="byline"><span class="pill" data-group>YOUR GROUP NAME</span><span class="pill">Communities · overlap · weights · backbones</span></div>
+  </div>
+</header>
+
+<main><div class="wrap">
+  <div id="data-error" class="error-box"></div>
+
+  <section class="panel intro-panel">
+    <div class="panel-caption">The question</div>
+    <div class="panel-pad">
+      <div class="story-intro">
+        <div class="story-copy">
+          <p>We usually draw communities as clean colored islands. But philosophers do not stay politely inside one intellectual box.</p>
+          <p><strong>So we built a map whose borders you can challenge.</strong> Change the resolution, inspect the least stable philosophers, then strip the weighted network down to its statistically surprising ties.</p>
+        </div>
+        <div class="big-quote">Same network.<br>Different lens.<br><em>Different borders.</em></div>
+      </div>
+      <div class="metrics">
+        <div class="metric"><div class="num" id="m-nodes">—</div><div class="label">philosophers</div><div class="sub">full frozen Week 4 snapshot</div></div>
+        <div class="metric"><div class="num" id="m-edges">—</div><div class="label">undirected links</div><div class="sub">directions summed</div></div>
+        <div class="metric"><div class="num" id="m-communities">—</div><div class="label">communities</div><div class="sub">at γ = 1.00</div></div>
+        <div class="metric"><div class="num" id="m-q">—</div><div class="label">modularity Q</div><div class="sub">descriptive, not ground truth</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resolution" class="panel">
+    <div class="panel-caption">Panel 1 · The resolution machine</div>
+    <div class="panel-pad">
+      <div class="figure-title">
+        <div><h2>How many schools of thought do you want to see?</h2><span class="comic-callout">Drag γ</span></div>
+        <p>Louvain maximizes modularity, but the resolution parameter γ changes what counts as a worthwhile group. Lower γ favors larger communities; higher γ reveals smaller ones.</p>
+      </div>
+      <div class="control-strip">
+        <div class="range-wrap"><div><strong>Resolution γ</strong><span id="gamma-label">1.00</span></div><input id="gamma" type="range" min="0.50" max="2.00" step="0.10" value="1.00"></div>
+        <button id="reroll" type="button">↻ New seed</button>
+        <div class="live-stat"><span>Communities</span><strong id="community-count">—</strong></div>
+        <div class="live-stat"><span>Modularity</span><strong id="q-now">—</strong></div>
+      </div>
+      <div class="resolution-grid">
+        <div class="figure-frame community-stage"><svg id="community-map" viewBox="0 0 800 560" role="img" aria-label="Community map"></svg></div>
+        <div class="chart-card inspector">
+          <div class="eyebrow">Selected community</div>
+          <h3 id="community-title">Click a community</h3>
+          <p id="community-copy" class="selected-summary">Each bubble is one Louvain community. Bubble size is membership; links summarize connections between communities.</p>
+          <div id="community-members" class="member-cloud"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="borders" class="panel">
+    <div class="panel-caption">Panel 2 · Border crossers</div>
+    <div class="panel-pad">
+      <div class="figure-title">
+        <div><h2>Which philosophers refuse to stay in one box?</h2><span class="comic-callout">5 seeds · same γ</span></div>
+        <p>Louvain is stochastic. We rerun γ = 1 five times and compare the neighborhood of each philosopher’s assigned community. Low loyalty means the surrounding membership changes a lot across equally plausible runs.</p>
+      </div>
+      <div class="border-controls">
+        <label>Find a philosopher<input id="philosopher-search" type="search" placeholder="Aristotle…" list="philosopher-list"></label>
+        <datalist id="philosopher-list"></datalist>
+        <button id="surprise-me" type="button">Surprise me</button>
+        <button id="show-unstable" type="button">Show shakiest</button>
+      </div>
+      <div class="border-grid">
+        <div class="figure-frame"><svg id="loyalty-chart" viewBox="0 0 800 500" role="img" aria-label="Community stability chart"></svg></div>
+        <div class="chart-card inspector">
+          <div class="eyebrow">Community passport</div>
+          <h3 id="philosopher-title">Pick a philosopher</h3>
+          <div id="passport" class="passport"><p class="selected-summary">Click a bar or search by name. We compare the membership around that philosopher across five Louvain seeds.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="backbone" class="panel">
+    <div class="panel-caption">Panel 3 · X-ray the network</div>
+    <div class="panel-pad">
+      <div class="figure-title">
+        <div><h2>What survives when weak ties stop counting?</h2><span class="comic-callout">Disparity filter</span></div>
+        <p>A global weight cutoff favors hubs. The disparity filter instead asks whether a tie is unusually strong relative to each philosopher’s own pattern of attention. Move α and watch the skeleton appear.</p>
+      </div>
+      <div class="control-strip backbone-controls">
+        <div class="range-wrap"><div><strong>Significance α</strong><span id="alpha-label">0.20</span></div><input id="alpha" type="range" min="0.05" max="0.50" step="0.05" value="0.20"></div>
+        <div class="live-stat"><span>Links kept</span><strong id="backbone-links">—</strong></div>
+        <div class="live-stat"><span>Visible nodes</span><strong id="backbone-nodes">—</strong></div>
+        <button id="pulse-backbone" type="button">▶ Pulse filter</button>
+      </div>
+      <div class="figure-frame backbone-stage"><svg id="backbone-map" viewBox="0 0 980 650" role="img" aria-label="Weighted network backbone"></svg></div>
+      <p class="figure-note">For legibility the X-ray displays the strongest 220 philosophers, but the disparity test and link count are computed on the full giant component. Node size = strength; color = γ=1 Louvain community.</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-caption">What to notice</div>
+    <div class="panel-pad">
+      <div class="survivor-grid week4-lessons">
+        <div class="survivor"><div class="stamp">TURN</div><h3>Communities have scale</h3><p>Changing γ changes the map without changing a single link. “The communities” are partly a modeling choice.</p></div>
+        <div class="survivor"><div class="stamp">REROLL</div><h3>Borders can be unstable</h3><p>Near-equal modularity can hide different memberships. A single Louvain run looks more certain than it is.</p></div>
+        <div class="survivor"><div class="stamp">X-RAY</div><h3>Weight changes the picture</h3><p>The backbone preserves ties that are locally surprising, not merely globally heavy.</p></div>
+      </div>
+      <div class="final-verdict"><div class="verdict-word">THE TAKEAWAY</div><p>A community map is a lens, not a label-maker. Trust the structures that survive changes in scale, seed, and edge filtering.</p></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="panel-caption">What we did</div>
+    <div class="panel-pad method">
+      <p>We load the frozen Week 4 philosopher snapshot, sum both directions into one weighted undirected graph, and analyze its giant component. Community partitions use Louvain modularity with an adjustable resolution γ. Modularity is recomputed from the displayed partition rather than treated as a measure of truth.</p>
+      <p>For stability, we run Louvain five times at γ = 1 with different seeded random orders. A philosopher’s “loyalty” is the average Jaccard similarity between its community in the first run and its community in the other runs. For the weighted X-ray, an edge is kept when its disparity-filter significance is below α at either endpoint.</p>
+    </div>
+  </section>
+</div></main>
+
+<footer class="site-footer"><div class="wrap"><strong data-group>YOUR GROUP NAME</strong> · <span data-course>02805 Social Graphs and Interactions</span></div></footer>
+<script src="../site-config.js"></script>
+<script>
+document.querySelectorAll("[data-group]").forEach(el => el.textContent = SITE.groupName);
+document.querySelectorAll("[data-course]").forEach(el => el.textContent = SITE.course);
+</script>
+<script type="module" src="../js/week4.js"></script>
+</body>
+</html>

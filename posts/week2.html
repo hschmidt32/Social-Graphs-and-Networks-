@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Week 2 — The Multiverse Test</title>
+  <meta name="description" content="A degree-preserving null-model experiment on the Marvel superhero Wikipedia network.">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../week2.css">
+</head>
+<body>
+<nav class="site-nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="../"><span class="brand-box">GRAPH</span>VERSE</a>
+    <div class="nav-links">
+      <a href="../">All weeks</a>
+      <a href="#experiment">Experiment</a>
+      <a href="#verdict">Verdict</a>
+      <a href="#heroes">Heroes</a>
+      <a href="#meaning">Meaning</a>
+    </div>
+  </div>
+</nav>
+
+<header class="masthead week2-masthead">
+  <div class="wrap masthead-inner">
+    <div class="issue-kicker">Issue #02 · Week 2</div>
+    <h1>The Multiverse<br>Test</h1>
+    <p class="deck">Keep every hero exactly as connected. Erase <em>who</em> they are connected to. Rebuild the universe 100 times. <strong>What survives?</strong></p>
+    <div class="byline">
+      <span class="pill" data-group>YOUR GROUP NAME</span>
+      <span class="pill">Models · null models · 100 shuffled universes</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div id="data-error" class="error-box"></div>
+
+    <section class="panel">
+      <div class="panel-caption">The question</div>
+      <div class="panel-pad" style="padding-top:4px">
+        <div class="story-intro">
+          <div class="story-copy">
+            <p>Marvel is full of hubs. Spider-Man and a handful of other characters touch enormous parts of the network, and hubs alone can create patterns that look meaningful. So instead of asking whether Marvel differs from a completely random graph, we asked a stricter question.</p>
+            <p><strong>If every character keeps exactly the same number of neighbors, but we scramble who those neighbors are, does Marvel still look special?</strong></p>
+          </div>
+          <div class="big-quote">Same heroes.<br>Same degrees.<br><em>Different universe.</em></div>
+        </div>
+        <div class="metrics">
+          <div class="metric"><div class="num" id="m-gc">277</div><div class="label">heroes tested</div><div class="sub">the undirected giant component</div></div>
+          <div class="metric"><div class="num" id="m-edges">—</div><div class="label">links preserved</div><div class="sub">every shuffle keeps the same degree sequence</div></div>
+          <div class="metric"><div class="num" id="m-real-c">—</div><div class="label">real clustering</div><div class="sub">mean local clustering coefficient</div></div>
+          <div class="metric"><div class="num" id="m-null-c">—</div><div class="label">shuffled clustering</div><div class="sub">mean across 100 alternate universes</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiment" class="panel">
+      <div class="panel-caption">Panel 1 · Build the multiverse</div>
+      <div class="panel-pad" style="padding-top:4px">
+        <div class="figure-title">
+          <div>
+            <h2>Shuffle the relationships, not the popularity</h2>
+            <span class="comic-callout">Degree sequence locked</span>
+          </div>
+          <p>Each alternate universe starts from the real giant component and performs many degree-preserving edge swaps. An edge A–B and another C–D become A–D and C–B, over and over. Every hero keeps the same degree; only the pairing changes.</p>
+        </div>
+        <div class="swap-demo">
+          <div class="swap-card before">
+            <div class="swap-title">Before</div>
+            <svg viewBox="0 0 360 190" role="img" aria-label="Two original edges A-B and C-D">
+              <line x1="65" y1="55" x2="295" y2="55"></line>
+              <line x1="65" y1="140" x2="295" y2="140"></line>
+              <g><circle cx="65" cy="55" r="22"></circle><text x="65" y="62">A</text></g>
+              <g><circle cx="295" cy="55" r="22"></circle><text x="295" y="62">B</text></g>
+              <g><circle cx="65" cy="140" r="22"></circle><text x="65" y="147">C</text></g>
+              <g><circle cx="295" cy="140" r="22"></circle><text x="295" y="147">D</text></g>
+            </svg>
+          </div>
+          <div class="swap-arrow">↯</div>
+          <div class="swap-card after">
+            <div class="swap-title">After</div>
+            <svg viewBox="0 0 360 190" role="img" aria-label="Rewired edges A-D and C-B">
+              <line x1="65" y1="55" x2="295" y2="140"></line>
+              <line x1="65" y1="140" x2="295" y2="55"></line>
+              <g><circle cx="65" cy="55" r="22"></circle><text x="65" y="62">A</text></g>
+              <g><circle cx="295" cy="55" r="22"></circle><text x="295" y="62">B</text></g>
+              <g><circle cx="65" cy="140" r="22"></circle><text x="65" y="147">C</text></g>
+              <g><circle cx="295" cy="140" r="22"></circle><text x="295" y="147">D</text></g>
+            </svg>
+          </div>
+        </div>
+        <div class="degree-lock" id="degree-lock">Loading Marvel…</div>
+      </div>
+    </section>
+
+    <section id="verdict" class="panel">
+      <div class="panel-caption">Panel 2 · The verdict</div>
+      <div class="panel-pad" style="padding-top:4px">
+        <div class="figure-title">
+          <div>
+            <h2>Popularity explains some triangles. Not these many.</h2>
+            <span class="comic-callout" id="z-callout">Building 100 universes…</span>
+          </div>
+          <p>The histogram is the clustering coefficient from 100 networks with the exact same degree sequence as Marvel. The red line is the real network. If the line sits far outside the histogram, the hubs are not enough to explain the clustering.</p>
+        </div>
+        <div class="run-row">
+          <div class="progress-shell" aria-label="shuffle progress"><div id="shuffle-progress" class="progress-fill"></div></div>
+          <button id="rerun-btn" disabled>Run 100 new universes</button>
+        </div>
+        <div id="null-histogram" class="figure-frame null-histogram"><div class="loading-state">Preparing the null distribution…</div></div>
+        <div class="null-stats">
+          <div><span>Real C</span><strong id="stat-real">—</strong></div>
+          <div><span>Null mean</span><strong id="stat-null">—</strong></div>
+          <div><span>Null SD</span><strong id="stat-sd">—</strong></div>
+          <div><span>z-score</span><strong id="stat-z">—</strong></div>
+          <div><span>empirical p</span><strong id="stat-p">—</strong></div>
+        </div>
+        <div class="figure-note">Null = exact degree-preserving edge swaps on the 277-character giant component. Each shuffled universe receives 10 × m successful swap attempts before measurement.</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-caption">Panel 3 · Compared to what?</div>
+      <div class="panel-pad" style="padding-top:4px">
+        <div class="figure-title">
+          <div><h2>Three universes, three conclusions</h2></div>
+          <p>An Erdős–Rényi graph throws away the hubs. The degree-preserving null keeps the hubs and destroys only the identities of their neighbors. Moving the baseline changes the question we are asking.</p>
+        </div>
+        <div id="baseline-bars" class="baseline-bars"></div>
+        <div class="baseline-explainer">
+          <div class="chart-card"><h3>Pure chance</h3><p>An ER-style graph with the same size and density has very low clustering. That tells us Marvel is not simply random.</p></div>
+          <div class="chart-card"><h3>Hubs only</h3><p>The degree-preserving null moves the baseline upward. Hubs explain part of the triangle surplus.</p></div>
+          <div class="chart-card"><h3>Real Marvel</h3><p>The remaining gap is structure beyond the degree sequence: neighbors are connected to one another far more often than popularity alone predicts.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="heroes" class="panel">
+      <div class="panel-caption">Panel 4 · Who bends the null?</div>
+      <div class="panel-pad" style="padding-top:4px">
+        <div class="figure-title">
+          <div>
+            <h2>The neighborhoods that are too tight to be chance</h2>
+            <span class="comic-callout">Our extra question</span>
+          </div>
+          <p>Network-wide clustering says Marvel has excess triangles. We pushed one step further: for every character, compare their real local clustering with that same character's average clustering across the 100 degree-preserving universes.</p>
+        </div>
+        <div class="two-col hero-null-grid">
+          <div class="chart-card purple-head">
+            <h3>Largest positive clustering gap</h3>
+            <p class="figure-note">Real local C minus that hero's shuffled expectation. We require degree ≥ 5 so very small neighborhoods do not dominate the ranking.</p>
+            <div id="excess-leaderboard"></div>
+          </div>
+          <div class="chart-card">
+            <h3 id="hero-detail-title">Pick a hero</h3>
+            <div id="hero-detail" class="hero-detail"><p>Click a row to inspect how tightly that hero's real neighbors connect compared with shuffled universes.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="meaning" class="panel">
+      <div class="panel-caption">What survived?</div>
+      <div class="panel-pad" style="padding-top:4px">
+        <div class="survivor-grid">
+          <div class="survivor survive"><div class="stamp">SURVIVES</div><h3>Every hero's degree</h3><p>The entire degree distribution is fixed by construction. The biggest hubs stay the biggest hubs.</p></div>
+          <div class="survivor survive"><div class="stamp">SURVIVES</div><h3>The isolates</h3><p>The 17 degree-zero characters stay isolated under a full-network degree-preserving shuffle. Their existence is a degree-sequence fact.</p></div>
+          <div class="survivor dies"><div class="stamp">COLLAPSES</div><h3>About half the clustering</h3><p id="collapse-copy">Once partners are scrambled, clustering drops sharply even though popularity is unchanged.</p></div>
+        </div>
+        <div class="final-verdict">
+          <div class="verdict-word">VERDICT</div>
+          <p id="verdict-copy">The hubs matter — but they are not the whole story.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-caption">What we did</div>
+      <div class="panel-pad method" style="padding-top:4px">
+        <p>We loaded the same frozen Week 1 Marvel snapshot used by the course, collapsed directed Wikipedia links to undirected pairs, and extracted the 277-character giant component. We measured the real average local clustering coefficient, then built 100 null networks by repeatedly applying degree-preserving double-edge swaps; every character therefore keeps exactly the same degree in every null network.</p>
+        <p>The page computes the null distribution in your browser. It reports the null mean and standard deviation, the real network's z-score, and the empirical p-value. We also accumulate each character's local clustering across the null ensemble to identify neighborhoods whose triangle closure is unusually high even after controlling for degree.</p>
+        <p><strong>What this does not prove:</strong> excess clustering does not tell us the social or editorial mechanism that created the triangles. It only tells us that the degree sequence by itself is not enough.</p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div id="tooltip" class="tooltip"></div>
+<footer class="site-footer"><div class="wrap"><strong data-group>YOUR GROUP NAME</strong> · Week 2 · Social Graphs and Interactions</div></footer>
+
+<script src="../site-config.js"></script>
+<script>document.querySelectorAll("[data-group]").forEach(el => el.textContent = SITE.groupName);</script>
+<script type="module" src="../js/week2.js"></script>
+</body>
+</html>
